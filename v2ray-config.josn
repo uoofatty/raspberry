@@ -43,11 +43,11 @@
     "settings": {
       "vnext": [
         {
-          "address": "35.227.113.34",
+          "address": "服务器地址",
           "port": 9443,
           "user": [
             {
-              "id": "23ad6b10-8d1a-40f7-8ad0-e3e35cd38297",
+              "id": "秘钥",
               "alterId": 1
             }
           ]
@@ -58,7 +58,7 @@
       "network": "h2",
       "security": "tls",
       "tlsSettings": {
-        "serverName": "icloud.com.xcdn.com",
+        "serverName": "证书域名",
         "allowInsecure": true
       },
       "httpSetting":{
