@@ -1,0 +1,137 @@
+
+  "log" : {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "dns":{
+    "server":[
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  },
+  "inbound": {
+    "port":1080 ,
+    "listen": "127.0.0.1"
+    "protocol": "socks",
+    "settings": {
+      "auth": "noauth"
+    }
+  },
+  "inboundDetour"[
+    {
+      "domainOverride": ["http","tls"],
+      "protocol": "dokodemo-door",
+      "port": 12345,
+      "setting":{
+        "network": "tcp",
+        "followRedirect": true
+      }
+    },
+    {
+      "protocol": "dokodemo-door",
+      "port": 9981,
+      "setting":{
+        "network": "udp",
+        "followRedirect": true
+      }
+    }
+  ],
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "35.227.113.34",
+          "port": 9443,
+          "user": [
+            {
+              "id": "23ad6b10-8d1a-40f7-8ad0-e3e35cd38297",
+              "alterId": 1
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings":{
+      "network": "h2",
+      "security": "tls",
+      "tlsSettings": {
+        "serverName": "icloud.com.xcdn.com",
+        "allowInsecure": true
+      },
+      "httpSetting":{
+        "path": "api"
+      }
+    }
+  },
+  "outboundDetour": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    }
+  ],
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type":"field",
+          "domain":[
+            "services.googleapis.cn",
+            "apple.com",
+            "appleid.apple.com",
+            "icloud.com",
+            "microsoftonline.com",
+            "live.com"
+          ],
+          "outboundTag": "proxy"
+        },
+        {
+          "type":"chinasites",
+          "outboundTag":"direct"
+        },
+        {
+          "type":"chinaip",
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "ip": [
+            "0.0.0.0/8",
+            "10.0.0.0/8",
+            "100.64.0.0/10",
+            "127.0.0.0/8",
+            "169.254.0.0/16",
+	          "172.16.0.0/12",
+            "192.0.0.0/24",
+            "192.0.2.0/24",
+            "192.168.0.0/16",
+            "198.18.0.0/15",
+            "198.51.100.0/24",
+            "203.0.113.0/24",
+            "::1/128",
+            "fc00::/7",
+            "fe80::/10"
+          ],
+          "outboundTag": "direct"
+        }
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
