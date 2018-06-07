@@ -1,0 +1,28 @@
+
+启用ssh
+
+修改 >> 
+sudo /etc/ssh/sshd_config
+
+重启服务 >> 
+sudo /etc/init.d/ssh restart
+
+检查状态 >> 
+sudo /etc/init.d/ssh status
+
+设置ssh开机启动 >> 
+sudo update-rc.d ssh enable
+取消ssh开机驱动 >> 
+sudo update-rc.d ssh disabled
+
+-------------------------------------------------------------------------------------------------------
+
+安装 vim 编辑器 -- vim连接失败问题，修改源
+
+清华源：https://mirror.tuna.tsinghua.edu.cn/help/raspbian/
+
+sudo nano /etc/apt/sources.list
+
+删除原文件所有内容，用以下内容取代：
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main non-free contrib
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main non-free contrib
