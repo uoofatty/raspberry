@@ -18,12 +18,12 @@
       "auth": "noauth"
     }
   },
-  "inboundDetour"[
+  "inboundDetour":[
     {
       "domainOverride": ["http","tls"],
       "protocol": "dokodemo-door",
       "port": 12345,
-      "setting":{
+      "settings":{
         "network": "tcp",
         "followRedirect": true
       }
@@ -31,7 +31,7 @@
     {
       "protocol": "dokodemo-door",
       "port": 9981,
-      "setting":{
+      "settings":{
         "network": "udp",
         "followRedirect": true
       }
@@ -42,11 +42,11 @@
     "settings": {
       "vnext": [
         {
-          "address": "服务器地址",
+          "address": "[服务器地址]",
           "port": 9443,
-          "user": [
+          "users": [
             {
-              "id": "秘钥",
+              "id": "[密钥：yy0524-23ad6b10-8d1a-40f7-8ad0-e3e35cd38297]",
               "alterId": 1
             }
           ]
@@ -57,11 +57,11 @@
       "network": "h2",
       "security": "tls",
       "tlsSettings": {
-        "serverName": "证书域名",
+        "serverName": "[服务别名]",
         "allowInsecure": true
       },
-      "httpSetting":{
-        "path": "api"
+      "httpSettings":{
+        "path": "/api"
       }
     }
   },
@@ -105,7 +105,7 @@
             "100.64.0.0/10",
             "127.0.0.0/8",
             "169.254.0.0/16",
-	          "172.16.0.0/12",
+            "172.16.0.0/12",
             "192.0.0.0/24",
             "192.0.2.0/24",
             "192.168.0.0/16",
@@ -122,15 +122,3 @@
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
