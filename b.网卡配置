@@ -98,7 +98,8 @@
 
         //输入sudo sysctl -p 使配置立刻生效.
         :~ $ sudo sysctl -p
-
+        
+        >>>>>----------start-----------<<<<<  [配置后,内网成功,外网失败]
         //使用wifi共享internet,需要配置nat
         sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
         sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
@@ -106,20 +107,23 @@
         
         //把TCP流量重定向到指定端口
         sudo iptables -t nat -A PREROUTING -p tcp -s 127.0.0.1 -j DNAT --to 服务器地址
+        >>>>>---------- end -----------<<<<<
         
-        //设定 iptables 规则，命令如下
+        //设定 iptables 规则，命令如下 [配置后,内、外网成功]
         sudo iptables -t nat -N V2RAY
         sudo iptables -t nat -A V2RAY -d 192.168.0.0/16 -j RETURN
         sudo iptables -t nat -A V2RAY -p tcp -j REDIRECT --to-ports 12345
         sudo iptables -t nat -A PREROUTING -p tcp -j V2RAY
         
-        //UDP 流量透明代理的 iptables 规则，命令如下
+         >>>>>----------start-----------<<<<<
+        //UDP 流量透明代理的 iptables 规则，命令如下  [配置后，无法获取IP地址]
         sudo ip rule add fwmark 1 table 100
         sudo sudo ip route add local 0.0.0.0/0 dev lo table 100
         sudo iptables -t mangle -N V2RAY_MASK
         sudo iptables -t mangle -A V2RAY_MASK  -d 192.168.0.0/16 -j RETURN
         sudo iptables -t mangle -A V2RAY_MASK -p udp -j TPROXY --on-port 12345 --tproxy-mark 1
         sudo iptables -t mangle -A PREROUTING -p udp -j V2RAY_MASK
+        >>>>>---------- end -----------<<<<<
         
         //每次重启之后iptables的配置nat都会丢失，所以需要保存一下
         sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
