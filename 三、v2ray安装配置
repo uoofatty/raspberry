@@ -1,0 +1,32 @@
+
+安装v2ray及配置
+ 
+>>>方法1：
+    
+    sudo su
+    
+    bash <(curl -L -s https://install.direct/go.sh)
+    
+    脚本运行完成后，你需要：
+    
+    编辑 /etc/v2ray/config.json 文件来配置你需要的代理方式
+    运行 service v2ray start 来启动 V2Ray 进程
+    之后可以使用 service v2ray start|stop|status|reload|restart|force-reload 控制 V2Ray 的运行
+
+    参考相关文章：
+    
+    https://www.v2ray.com/chapter_02/01_overview.html
+    https://toutyrater.github.io/prep/json.html
+ 
+>>>>方法2：
+
+    下载v2ray包
+    sudo wget https://github.com/v2ray/v2ray-core/releases/download/v3.25/v2ray-linux-arm.zip
+
+    安装zip
+    sudo apt-get install zip
+
+    解压zip
+    sudo unzip v2ray-linux-arm.zip
+    
+    ***...
