@@ -1,0 +1,79 @@
+配置wlan0网卡
+
+:~ $ sudo vim /etc/network/interfaces
+
+-------------- 配置 ----------------
+
+auto eth0
+iface eth0 inet dhcp
+
+auto wlan0
+iface wlan0 inet static
+        address 192.168.220.1
+        netmask 255.255.255.0
+        gateway 192.168.220.1
+        
+------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+:~ $ sudo vim /etc/default/hostapd
+
+-------------- 配置 ----------------
+
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+
+------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+:~ $ sudo vim /etc/hostapd/hostapd.conf
+
+-------------- 配置 ----------------
+
+interface=wlan0
+
+driver=nl80211
+
+ssid=[wifi-name]
+
+hw_mode=g
+
+channel=11
+
+ieee80211n=1
+
+macaddr_acl=0
+
+auth_algs=1
+
+ignore_broadcast_ssid=0
+
+wpa=2
+
+wpa_key_mgmt=WPA-PSK
+
+wpa_passphrase=[wifi-password]
+
+rsn_pairwise=TKIP CCMP
+
+------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+:~ $ sudo vim /etc/dnsmasq.conf
+
+-------------- 配置 ----------------
+
+interface=wlan0
+
+listen-address=192.168.220.1
+
+no-dhcp-interface=lo,eth0
+
+bind-interfaces
+
+dhcp-range=192.168.220.50,192.168.220.150,72h
+
+------------------------------------
+
