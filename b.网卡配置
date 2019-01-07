@@ -20,6 +20,7 @@ iface wlan0 inet static
 >>hostapd
                 
         新增配置文件sudo vi /etc/hostapd/hostapd.conf
+        (如无法保存，应创建文件并授权)
         
         :~ $ sudo vim /etc/hostapd/hostapd.conf
 
