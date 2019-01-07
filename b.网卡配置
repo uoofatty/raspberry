@@ -1,24 +1,24 @@
 >>给wlan0配置一个静态IP
 
-        :~ $ sudo vim /etc/network/interfaces
+:~ $ sudo vim /etc/network/interfaces
 
-        -------------- 配置 ----------------
+-------------- 配置 ----------------
 
-        auto eth0
-        iface eth0 inet dhcp
+auto eth0
+iface eth0 inet dhcp
 
-        auto wlan0
-        iface wlan0 inet static
-                address 192.168.220.1
-                netmask 255.255.255.0
-                gateway 192.168.220.1
+auto wlan0
+iface wlan0 inet static
+        address 192.168.220.1
+        netmask 255.255.255.0
+        gateway 192.168.220.1
 
         ------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 >>hostapd
-
+                
         新增配置文件sudo vi /etc/hostapd/hostapd.conf
         
         :~ $ sudo vim /etc/hostapd/hostapd.conf
@@ -51,12 +51,14 @@
 
         rsn_pairwise=TKIP CCMP
         
+        （安装hostapd后可测试！）
         测试一下sudo /usr/sbin/hostapd /etc/hostapd/hostapd.conf
         现在你可以在手机上搜到Pi3-AP的wifi，输入密码连接上之后会发现一直等待的状态,
         因为DHCP服务还没配置，我们下一步就要配置dnsmasq。
         
         -------------------------------------
         
+        （安装hostapd）
         安装hostapd之后，系统服务已经添加了，但是配置文件的地址还需要配置
         
         :~ $ sudo vim /etc/default/hostapd
