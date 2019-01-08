@@ -133,7 +133,7 @@ DAEMON_CONF="/etc/hostapd/hostapd.conf"
 
 sudo apt-get install dnsmasq
 
-修改配置文件dnsmasq.conf
+💡 修改配置文件dnsmasq.conf
 
 sudo vim /etc/dnsmasq.conf
 
